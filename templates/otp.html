@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OTP Verification - 2FA Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="background-stars"></div>
+    <div class="container">
+        <h1>OTP Verification</h1>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for msg in messages %}
+            <div class="flash">{{ msg }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('two_factor') }}">
+            <input type="text" name="otp" placeholder="Enter OTP" required>
+            <input type="submit" value="Verify OTP">
+        </form>
+
+        <p>Check your email for the OTP code.</p>
+    </div>
+</body>
+</html>
